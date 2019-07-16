@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://chenyuxiangg.github.io">
   <title>杂记 | 紫翼之狮的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关于本文&amp;#8195;本文主要记录一些我在学习生活中的一些重要但不足以成文的小细节，这些细节可能超级有用，亦或一些个人的观点见解。  杂记1、关于hexo g命令的输出&amp;#8195;“hexo g”会将.deploy_git目录下的所有内容全部拷贝到public目录下（新生成的，使用hexo clean会将此目录删除），而在访问localhost:4000 或者部署于远端的博客时，呈现给我们的就">
+  <meta name="description" content="关于本文&amp;#8195;本文主要记录一些我在学习生活中的一些重要但不足以成文的小细节，这些细节可能超级有用，亦或一些个人的观点见解。">
 <meta name="keywords" content="其他">
 <meta property="og:type" content="article">
 <meta property="og:title" content="杂记">
 <meta property="og:url" content="http://chenyuxiangg.github.io/2019/07/07/杂记/index.html">
 <meta property="og:site_name" content="紫翼之狮的博客">
-<meta property="og:description" content="关于本文&amp;#8195;本文主要记录一些我在学习生活中的一些重要但不足以成文的小细节，这些细节可能超级有用，亦或一些个人的观点见解。  杂记1、关于hexo g命令的输出&amp;#8195;“hexo g”会将.deploy_git目录下的所有内容全部拷贝到public目录下（新生成的，使用hexo clean会将此目录删除），而在访问localhost:4000 或者部署于远端的博客时，呈现给我们的就">
+<meta property="og:description" content="关于本文&amp;#8195;本文主要记录一些我在学习生活中的一些重要但不足以成文的小细节，这些细节可能超级有用，亦或一些个人的观点见解。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-11T04:00:31.824Z">
+<meta property="og:updated_time" content="2019-07-16T13:32:39.088Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="杂记">
-<meta name="twitter:description" content="关于本文&amp;#8195;本文主要记录一些我在学习生活中的一些重要但不足以成文的小细节，这些细节可能超级有用，亦或一些个人的观点见解。  杂记1、关于hexo g命令的输出&amp;#8195;“hexo g”会将.deploy_git目录下的所有内容全部拷贝到public目录下（新生成的，使用hexo clean会将此目录删除），而在访问localhost:4000 或者部署于远端的博客时，呈现给我们的就">
+<meta name="twitter:description" content="关于本文&amp;#8195;本文主要记录一些我在学习生活中的一些重要但不足以成文的小细节，这些细节可能超级有用，亦或一些个人的观点见解。">
   
     <link rel="alternative" href="/atom.xml" title="紫翼之狮的博客" type="application/atom+xml">
   
@@ -171,6 +171,8 @@
       
         <hr>
 <h2 id="关于本文"><a href="#关于本文" class="headerlink" title="关于本文"></a>关于本文</h2><p>&#8195;<font face="楷体" size="5" color="blan">本文主要记录一些我在学习生活中的一些重要但不足以成文的小细节，这些细节可能超级有用，亦或一些个人的观点见解。</font></p>
+<a id="more"></a>
+
 <hr>
 <h2 id="杂记"><a href="#杂记" class="headerlink" title="杂记"></a>杂记</h2><h3 id="1、关于hexo-g命令的输出"><a href="#1、关于hexo-g命令的输出" class="headerlink" title="1、关于hexo g命令的输出"></a>1、关于hexo g命令的输出</h3><p>&#8195;<font face="楷体" size="5">“hexo g”会将.deploy_git目录下的所有内容全部拷贝到public目录下（新生成的，使用hexo clean会将此目录删除），而在访问localhost:4000 或者部署于远端的博客时，呈现给我们的就是public目录中的内容，无论是文字、图片还是页面格式等，都来源于此。因此，如需要修改页面样式，例如修改文章显示的宽度，我们就可以在.deploy_git/main.0cf68a.css中找到.artical的属性中找到margin，修改对应的值就行。</font></p>
 <h3 id="2、qt-for-android环境配置"><a href="#2、qt-for-android环境配置" class="headerlink" title="2、qt for android环境配置"></a>2、qt for android环境配置</h3><p>&#8195;<font face="楷体" size="5">具体的配置请看<a href="https://blog.csdn.net/wikichan/article/details/77679783" target="_blank" rel="noopener">这里</a>,我要说的，是一些构建时的小细节：<br>（1）当你的“项目-&gt;application-&gt;android build sdk为空时，编译是绝对不会通过的，解决办法是首先检查jdk,sdk,ndk路径是否正确，如果全都正确但是qtcreator死活加载不出sdk版本时，检查jdk版本是否是1.8版的，如果不是，请换成1.8版。<br>（2）当你的程序设置为debug版时，常常也会构建失败，错误提示是类似于build.xml的649行出问题（不一定是这一行，可能是其他），这时，将程序换成release版即可。<br>（3）当你使用的build-tools是高于23版本时，应该会出现”adie.exe创建目录失败：参数无效”这样的提示，这时，你需要做的就是下载一个23版本的build-tools，用里边的adie.exe替换掉你原来那个就行了。下载工具在<a href="https://github.com/chenyuxiangg/chenyuxiangg.github.io/tree/master/tools" target="_blank" rel="noopener">这里</a>。<br>（4）最后记得真机调试时，需要在开发者选项中打开”usb安装”。</font></p>
@@ -419,11 +421,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">其他</a>
+                <a href="javascript:void(0)" class="js-tag color5">unix</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">unix</a>
+                <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
               <li class="article-tag-list-item">
