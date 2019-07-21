@@ -1,39 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
-  
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="http://chenyuxiangg.github.io">
-  <title>紫翼之狮的博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="紫翼之狮的博客">
-<meta property="og:url" content="http://chenyuxiangg.github.io/index.html">
-<meta property="og:site_name" content="紫翼之狮的博客">
-<meta property="og:locale" content="default">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="紫翼之狮的博客">
-  
-    <link rel="alternative" href="/atom.xml" title="紫翼之狮的博客" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/assets/ico/webico.ico">
-  
-  <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
-  <style type="text/css">
-  
-    #container.show {
-      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
-    }
-  </style>
-  
++
++
++  
++
+
 
   
+  
+  <link href="/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
-</head>
-</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -145,6 +119,84 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-unix网络编程-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/21/unix网络编程-1/">unix网络编程</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/21/unix网络编程-1/" class="archive-article-date">
+  	<time datetime="2019-07-21T01:56:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="一、拒绝服务型攻击"><a href="#一、拒绝服务型攻击" class="headerlink" title="一、拒绝服务型攻击"></a>一、拒绝服务型攻击</h2><p>&#8195;<font face="楷体" size="5">我们知道，如果写一个简单的多端服务器-客户机交互程序，我们可以使用最粗暴的方法：服务器监听进程循环监听，当有客户端发起连接后，fork一个进程并用此进程处理服务器与客户机的交互。但是，这样做对计算机的资源消耗是相当大的，对于现实应用场景来说，一个服务器所需要连接的客户常常上万，而一台普通计算机所能产生的进程数量也只有最多两千而已。而且客户与服务器并不是时时刻刻都存在数据交互，因此这种分配方式很土豪。不过，我们拥有更加有效的资源利用方式，那就是仅仅使用单进程就能满足多端交互，具体做法是使用select函数将IO复用起来，当有新连接到达服务器后，使用accept建立服务器与客户的交互通道；当某一通道有数据传输时，并将使用权交给该通道。具体代码如下：</font></p>
+<p>​
+        
+          <a class="article-more-a" href="/2019/07/21/unix网络编程-1/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">unix</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/21/unix网络编程-1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-生活小记-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -659,84 +711,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/07/07/杂记/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-unix网络编程-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/04/unix网络编程-1/">unix网络编程(1)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/04/unix网络编程-1/" class="archive-article-date">
-  	<time datetime="2019-07-04T15:54:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="一、拒绝服务型攻击"><a href="#一、拒绝服务型攻击" class="headerlink" title="一、拒绝服务型攻击"></a>一、拒绝服务型攻击</h2><p>&#8195;<font face="楷体" size="5">我们知道，如果写一个简单的多端服务器-客户机交互程序，我们可以使用最粗暴的方法：服务器监听进程循环监听，当有客户端发起连接后，fork一个进程并用此进程处理服务器与客户机的交互。但是，这样做对计算机的资源消耗是相当大的，对于现实应用场景来说，一个服务器所需要连接的客户常常上万，而一台普通计算机所能产生的进程数量也只有最多两千而已。而且客户与服务器并不是时时刻刻都存在数据交互，因此这种分配方式很土豪。不过，我们拥有更加有效的资源利用方式，那就是仅仅使用单进程就能满足多端交互，具体做法是使用select函数将IO复用起来，当有新连接到达服务器后，使用accept建立服务器与客户的交互通道；当某一通道有数据传输时，并将使用权交给该通道。具体代码如下：</font></p>
-<p>​
-        
-          <a class="article-more-a" href="/2019/07/04/unix网络编程-1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">unix</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/04/unix网络编程-1/">展开全文 >></a>
         </p>
       
 
