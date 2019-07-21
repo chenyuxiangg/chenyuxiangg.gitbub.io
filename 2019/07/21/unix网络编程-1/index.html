@@ -1,44 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
-  
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="http://chenyuxiangg.github.io">
-  <title>unix网络编程 | 紫翼之狮的博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、拒绝服务型攻击&amp;#8195;我们知道，如果写一个简单的多端服务器-客户机交互程序，我们可以使用最粗暴的方法：服务器监听进程循环监听，当有客户端发起连接后，fork一个进程并用此进程处理服务器与客户机的交互。但是，这样做对计算机的资源消耗是相当大的，对于现实应用场景来说，一个服务器所需要连接的客户常常上万，而一台普通计算机所能产生的进程数量也只有最多两千而已。而且客户与服务器并不是时时刻刻都存">
-<meta name="keywords" content="unix">
-<meta property="og:type" content="article">
-<meta property="og:title" content="unix网络编程">
-<meta property="og:url" content="http://chenyuxiangg.github.io/2019/07/21/unix网络编程-1/index.html">
-<meta property="og:site_name" content="紫翼之狮的博客">
-<meta property="og:description" content="一、拒绝服务型攻击&amp;#8195;我们知道，如果写一个简单的多端服务器-客户机交互程序，我们可以使用最粗暴的方法：服务器监听进程循环监听，当有客户端发起连接后，fork一个进程并用此进程处理服务器与客户机的交互。但是，这样做对计算机的资源消耗是相当大的，对于现实应用场景来说，一个服务器所需要连接的客户常常上万，而一台普通计算机所能产生的进程数量也只有最多两千而已。而且客户与服务器并不是时时刻刻都存">
-<meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-21T02:30:08.792Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="unix网络编程">
-<meta name="twitter:description" content="一、拒绝服务型攻击&amp;#8195;我们知道，如果写一个简单的多端服务器-客户机交互程序，我们可以使用最粗暴的方法：服务器监听进程循环监听，当有客户端发起连接后，fork一个进程并用此进程处理服务器与客户机的交互。但是，这样做对计算机的资源消耗是相当大的，对于现实应用场景来说，一个服务器所需要连接的客户常常上万，而一台普通计算机所能产生的进程数量也只有最多两千而已。而且客户与服务器并不是时时刻刻都存">
-  
-    <link rel="alternative" href="/atom.xml" title="紫翼之狮的博客" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/assets/ico/webico.ico">
-  
-  <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
-  <style type="text/css">
-  
-    #container.show {
-      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
-    }
-  </style>
-  
++
++
++  
++
+
 
   
+  
+  <link href="/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
-</head>
-</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -182,6 +151,18 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1、gethostbyname,gethostbyaddr,getservbyname,getservbyaddr这四个函数是不可重入的，因为它们返回一个指向同一个静态结构的指针，可重入版本是以_r结尾的函数，例如：gethostbyname_r;</span><br><span class="line">2、inet_pton,inet_ntop总是可重入的;</span><br><span class="line">3、inet_ptoa不可重入;</span><br><span class="line">4、getaddrinfo可重入的前提是由它调用的函数都可重入，也就是说它应该调用可重入版本的gethostbyname和getservbyame，由于它返回的结果全部放在动态分配的内存中，因此它允许重入;</span><br><span class="line">5、许多版本的标准I/O函数库是不可重入的;</span><br><span class="line">6、信号处理函数中不应该调用不可重入函数;</span><br><span class="line">7、对于可重入版本的gethostbyname_r，需要一个由调用者分配的大小为buflen的缓冲区，该缓冲区用于存放规范主机名、别名指针数组、各个别名字符串、地址指针数组以及各个实际地址。一般这个缓冲区大小为8192字节。</span><br></pre></td></tr></table></figure>
 
 <h2 id="四、IPV4和IPV6的互操作性"><a href="#四、IPV4和IPV6的互操作性" class="headerlink" title="四、IPV4和IPV6的互操作性"></a>四、IPV4和IPV6的互操作性</h2><p><font face="楷体" size="5">1、IPV4的数据可通过将IPV4地址映射成IPV6地址而传输给IPV6套接字服务器，但是一个IPV6的数据报却不能传输给IPV4套接字服务器，原因在于不存在IPV6到IPV4的地址映射。<br><br>2、那么IPV6客户如何与IPV4服务器交互呢？答案是通过IPV4数据报。IPV6客户公国连接到IPV4服务器地址映射成的IPV6地址，并由内核发送IPV4数据报给服务器即可，这关键在于IPV6客户支持双栈协议且在getaddrinfo的参数中设置AI_V4MAPPEND标志。<br><br>3、如何解决源代码可移植性问题呢？首先储区所有gethostbyname和gethostbyaddr等协议相关的调用，改为getaddrinfo和getnameinfo；使用sock_XXX来处理独立于IPV4和IPV6的套接字地址。</font></p>
+<h2 id="五、守护进程"><a href="#五、守护进程" class="headerlink" title="五、守护进程"></a>五、守护进程</h2><p><font face="楷体" size="5">守护进程是在后台运行且不与任何控制终端关联的进程。<br>守护进程有多种启动方式：<br>1、在系统启动阶段由系统初始化脚本启动。这些脚本通常位于/etc目录或以/etc/rc开头的某个目录中，他们的具体位置和内容却是实现相关的。由脚本启动的守护进程一般都有超级用户权限；<br>2、许多网络服务器又inetd超级服务器启动，而inetd则由第一条中的某个脚本启动，inetd监听网络请求（telnet、ftp等），每当一个请求到达，启动相应的实际服务器；<br>3、cron守护进程按照规则定期执行一些程序，而由它启动执行的程序同样作为守护进程运行，cron同样由第一条中的某个脚本启动；<br>4、at命令用于指定将来某个时刻的程序执行。这些程序的执行时刻到来时，通常由cron守护进程启动执行他们，因此这些程序同样作为守护进程运行；<br>5、从用户终端或前台启动。<br>由于守护进程没有控制终端，因此消息都是通过syslog函数输出到syslogd守护进程的。</font></p>
+<h2 id="六、syslogd守护进程"><a href="#六、syslogd守护进程" class="headerlink" title="六、syslogd守护进程"></a>六、syslogd守护进程</h2><p><font face="楷体" size="5">uinx系统中源自Berkeley的syslogd守护进程通常由某个系统初始化脚本启动，而在工作期间一直运行。以下是它的启动步骤：<br>1、读取/etc/syslog.conf中的配置，该文件指定syslogd可能收取到的各种日志消息如何处理：添加到一个文件，或被写到指定用户的登陆窗口（用户已登陆到syslogd所在的系统中），或者转发给另一个主机上的syslogd进程；<br>2、创建Unix域数据报套接字，给他捆绑路径名/var/run/log（某些系统上是/dev/log);<br>3、创建一个UDP套接字，给他捆绑514端口；<br>4、打开路径/dev/klog,来自内核的任何出错消息是以这个设备为输入的。<br>之后syslogd循环执行，调用select在3个套接字描述符上等待。当收到SIGHUP信号时，重新读取配置文件。通过往syslogd的unix域套接字绑定的路径名发送消息就可以达到发送日志消息的目的。实现同样的目的也可以使用syslog函数，或者通过UDP套接字往本地环回地址和端口514发送消息。一般情况下因禁止syslogd创建UDP套接字，原因在于这可能会让系统遭到句句服务攻击。</font></p>
+<h2 id="七、syslog函数"><a href="#七、syslog函数" class="headerlink" title="七、syslog函数"></a>七、syslog函数</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;syslog.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">syslog</span><span class="params">(<span class="keyword">int</span> priority,<span class="keyword">const</span> <span class="keyword">char</span>* message,...)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><font face="楷体" size="5">该函数是用于登记消息的。message参数类似printf的格式串，不过增加了%m规范，它将被替换成与当前errno值对应的出错消息。例如：</font></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">syslog(LOG_INFO | LOG_LOCAL2,<span class="string">"rename(%s,%s):%m"</span>,file1,file2);</span><br></pre></td></tr></table></figure>
+
+<h2 id="八、inetd守护进程的工作流程"><a href="#八、inetd守护进程的工作流程" class="headerlink" title="八、inetd守护进程的工作流程"></a>八、inetd守护进程的工作流程</h2><p><img src="/assets/articleimg/inetd.png" alt></p>
+<p><font face="楷体" size="5">inetd通常不适用于服务器密集型服务器，其中值得注意的有邮件服务器和web服务器。举例来说，sendmail通常作为一个标准的并发服务器来运行。</font></p>
+<h2 id="九、启动一个程序并让他作为守护进程"><a href="#九、启动一个程序并让他作为守护进程" class="headerlink" title="九、启动一个程序并让他作为守护进程"></a>九、启动一个程序并让他作为守护进程</h2><p><font face="楷体" size="5">调用fork以转到后台运行，调用setsid建立一个新的POSIX绘画并成为会话头进程，再次fork以避免无意中获得新的控制终端，改变工作目录和文件创建模式掩码，最后关闭所有非必要的描述符。如下：</font></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"unp.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;syslog.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXFD 64</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> daemon_proc; <span class="comment">//定义于error.c</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">daemon_init</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* pname,<span class="keyword">int</span> facility)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">pid_t</span> pid;</span><br><span class="line">    <span class="keyword">if</span>((pid = fork()) &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> (<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(pid)</span><br><span class="line">        _exit(<span class="number">0</span>); <span class="comment">//终止父进程</span></span><br><span class="line">    <span class="comment">//子进程1继续执行</span></span><br><span class="line">    <span class="keyword">if</span>(setsid() &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> (<span class="number">-1</span>);</span><br><span class="line">    Signal(SIGHUP,SIG_IGN);</span><br><span class="line">    <span class="keyword">if</span>((pid = fork()) &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> (<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(pid)</span><br><span class="line">        _exit(<span class="number">0</span>); <span class="comment">//终止子进程1</span></span><br><span class="line">    <span class="comment">//子进程2继续执行</span></span><br><span class="line">    daemon_proc = <span class="number">1</span>;</span><br><span class="line">    chdir(<span class="string">"/"</span>);   <span class="comment">//改变工作目录</span></span><br><span class="line">    <span class="comment">//关闭无关文件描述符</span></span><br><span class="line">    <span class="comment">//由于无法从系统中获取使用的最大描述符，因此干脆关闭前64个</span></span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; MAXFD;++i)&#123;</span><br><span class="line">        close(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//重定向stdin,stdout,stderr 到/dev/null</span></span><br><span class="line">    <span class="comment">//这地方不是很懂。。</span></span><br><span class="line">    open(<span class="string">"/dev/null"</span>,ORDONLY);</span><br><span class="line">    open(<span class="string">"/dev/null"</span>,O_RDWR);</span><br><span class="line">    open(<span class="string">"/dev/null"</span>,O_RDWR);</span><br><span class="line">    openlog(pname,LOG_PID,facility);</span><br><span class="line">    <span class="keyword">return</span> (<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="500" height="100" src="//music.163.com/outchain/player?type=2&id=409654891&auto=0&height=66"></iframe>
 <font face="幼圆" size="2" color="blac"><span id="busuanzi_container_page_pv"> 本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span></font>
 
@@ -429,15 +410,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">unix</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">其他</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安逸</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -450,6 +423,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">unix</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安逸</a>
               </li>
             
             <div class="clearfix"></div>
