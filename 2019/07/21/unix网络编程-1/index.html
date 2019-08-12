@@ -1,13 +1,46 @@
-+
-+
-+  
-+
-
-
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="dns-prefetch" href="http://chenyuxiangg.github.io">
+  <title>unix网络编程 | 紫翼之狮的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、拒绝服务型攻击&amp;#8195;我们知道，如果写一个简单的多端服务器-客户机交互程序，我们可以使用最粗暴的方法：服务器监听进程循环监听，当有客户端发起连接后，fork一个进程并用此进程处理服务器与客户机的交互。但是，这样做对计算机的资源消耗是相当大的，对于现实应用场景来说，一个服务器所需要连接的客户常常上万，而一台普通计算机所能产生的进程数量也只有最多两千而已。而且客户与服务器并不是时时刻刻都存">
+<meta name="keywords" content="unix">
+<meta property="og:type" content="article">
+<meta property="og:title" content="unix网络编程">
+<meta property="og:url" content="http://chenyuxiangg.github.io/2019/07/21/unix网络编程-1/index.html">
+<meta property="og:site_name" content="紫翼之狮的博客">
+<meta property="og:description" content="一、拒绝服务型攻击&amp;#8195;我们知道，如果写一个简单的多端服务器-客户机交互程序，我们可以使用最粗暴的方法：服务器监听进程循环监听，当有客户端发起连接后，fork一个进程并用此进程处理服务器与客户机的交互。但是，这样做对计算机的资源消耗是相当大的，对于现实应用场景来说，一个服务器所需要连接的客户常常上万，而一台普通计算机所能产生的进程数量也只有最多两千而已。而且客户与服务器并不是时时刻刻都存">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://chenyuxiangg.github.io/assets/articleimg/inetd.png">
+<meta property="og:updated_time" content="2019-08-02T00:59:28.507Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="unix网络编程">
+<meta name="twitter:description" content="一、拒绝服务型攻击&amp;#8195;我们知道，如果写一个简单的多端服务器-客户机交互程序，我们可以使用最粗暴的方法：服务器监听进程循环监听，当有客户端发起连接后，fork一个进程并用此进程处理服务器与客户机的交互。但是，这样做对计算机的资源消耗是相当大的，对于现实应用场景来说，一个服务器所需要连接的客户常常上万，而一台普通计算机所能产生的进程数量也只有最多两千而已。而且客户与服务器并不是时时刻刻都存">
+<meta name="twitter:image" content="http://chenyuxiangg.github.io/assets/articleimg/inetd.png">
+  
+    <link rel="alternative" href="/atom.xml" title="紫翼之狮的博客" type="application/atom+xml">
   
   
-  <link href="/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="/assets/ico/webico.ico">
+  
+  <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
+  <style type="text/css">
+  
+    #container.show {
+      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
+    }
+  </style>
+  
 
+  
+
+</head>
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -163,6 +196,11 @@
 <h2 id="九、启动一个程序并让他作为守护进程"><a href="#九、启动一个程序并让他作为守护进程" class="headerlink" title="九、启动一个程序并让他作为守护进程"></a>九、启动一个程序并让他作为守护进程</h2><p><font face="楷体" size="5">调用fork以转到后台运行，调用setsid建立一个新的POSIX绘画并成为会话头进程，再次fork以避免无意中获得新的控制终端，改变工作目录和文件创建模式掩码，最后关闭所有非必要的描述符。如下：</font></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"unp.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;syslog.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXFD 64</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> daemon_proc; <span class="comment">//定义于error.c</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">daemon_init</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* pname,<span class="keyword">int</span> facility)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">pid_t</span> pid;</span><br><span class="line">    <span class="keyword">if</span>((pid = fork()) &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> (<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(pid)</span><br><span class="line">        _exit(<span class="number">0</span>); <span class="comment">//终止父进程</span></span><br><span class="line">    <span class="comment">//子进程1继续执行</span></span><br><span class="line">    <span class="keyword">if</span>(setsid() &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> (<span class="number">-1</span>);</span><br><span class="line">    Signal(SIGHUP,SIG_IGN);</span><br><span class="line">    <span class="keyword">if</span>((pid = fork()) &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> (<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(pid)</span><br><span class="line">        _exit(<span class="number">0</span>); <span class="comment">//终止子进程1</span></span><br><span class="line">    <span class="comment">//子进程2继续执行</span></span><br><span class="line">    daemon_proc = <span class="number">1</span>;</span><br><span class="line">    chdir(<span class="string">"/"</span>);   <span class="comment">//改变工作目录</span></span><br><span class="line">    <span class="comment">//关闭无关文件描述符</span></span><br><span class="line">    <span class="comment">//由于无法从系统中获取使用的最大描述符，因此干脆关闭前64个</span></span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; MAXFD;++i)&#123;</span><br><span class="line">        close(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//重定向stdin,stdout,stderr 到/dev/null</span></span><br><span class="line">    <span class="comment">//这地方不是很懂。。</span></span><br><span class="line">    open(<span class="string">"/dev/null"</span>,ORDONLY);</span><br><span class="line">    open(<span class="string">"/dev/null"</span>,O_RDWR);</span><br><span class="line">    open(<span class="string">"/dev/null"</span>,O_RDWR);</span><br><span class="line">    openlog(pname,LOG_PID,facility);</span><br><span class="line">    <span class="keyword">return</span> (<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="十、select-amp-poll-amp-epoll"><a href="#十、select-amp-poll-amp-epoll" class="headerlink" title="十、select &amp; poll &amp; epoll"></a>十、select &amp; poll &amp; epoll</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ulimit -n				<span class="comment">//查看当前进程可访问的最大文件描述符</span></span><br><span class="line">[root] ulimit -n &lt;num&gt;  <span class="comment">//可将最大文件描述符修改为num,num也受系统所能打开的最大文件描述符限制，与内存容量有关</span></span><br><span class="line"><span class="comment">//程序中，可以使用以下两个函数获取和设置资源，具体用法可以man一下</span></span><br><span class="line">getrlimit();</span><br><span class="line">setrlimit();</span><br></pre></td></tr></table></figure>
+
+<p><font face="楷体" size="5">selelt实现并发服务器可能存在以下两个限制：<br>1、进程可打开的文件描述符个数的限制；<br>2、FD_SETSIZE的限制。<br>为解决限制1，我们可以使用ulimit来修改进程支持的最大描述符个数；为解决限制2，我们需要修改FD_SETSIZE宏定义，并重新编译内核才能生效。编译内核很是麻烦，因此人们开发了poll。<br><br>poll和select的共同点：内核需要遍历加入到描述符集的所有描述符，直到找到发生事件的文件描述符，因此描述符越多，效率越低。<br>poll和select的区别：poll没有FD_SETSIZE的限制。<br><br>为了寻求更有效率的解决方案，机智的人们改变了‘轮询’的思维，转而使用‘回调’的方式来实现描述符的管理，这就产生了epoll。epoll与select、poll的区别如下：<br>1、相比于poll、select最大的区别十他不会随着舰艇套接字的数目增加而降低效率；<br>2、后两者使用的是轮询的方式实现，而epoll基于回调；<br>3、后两者使用内存拷贝实现fd消息通知给用户空间，而epoll采用贡献内存的方式。<br><br></font></p>
+<h2 id="十一、UNIX域协议"><a href="#十一、UNIX域协议" class="headerlink" title="十一、UNIX域协议"></a>十一、UNIX域协议</h2><p><font face="楷体" size="5">1、用于本地进程间通信，传输速度是TCP/IP协议的两倍；<br>2、支持描述符的传递；<br>3、用路径名来表示协议族的描述；<br>4、bind()调用时，会在指定路径创建一个套接字文件(使用ls -l 命令查看时，文件类型位为s）；<br>5、参数中的sun_path最好使用绝对路径；<br>6、支持流式套接字和报式套接字；<br>7、connet发现监听队列满时，会直接返回ECONNREFUSED错误。<br><br><font face="幼圆" size="5" color="red"><em>tip：使用stat可以查看文件信息；<br>使用umask可查看umask设置的值（权限掩码）；<br>父子进程间通信，可以直接使用socketpair()函数创建一对全双工的UNIX域协议套接字<br></em></font><br></font></p>
+<h2 id="十二、进程间通信（IPC"><a href="#十二、进程间通信（IPC" class="headerlink" title="十二、进程间通信（IPC)"></a>十二、进程间通信（IPC)</h2><p><font face="楷体" size="5">顺序程序的特征：顺序性、封闭性、确定性、可在现性；<br>并发程序特征：共享性、并发性、随机性。<br><br><em>相关术语</em><br>进程互斥：各进程需要共享资源，而且有些资源需要互斥使用，因此进程间竞争使用这些资源，进程的这种关系成为互斥，有关资源称为临界资源，有关代码段称为临界区。<br>进程同步：多个进程相互配合共同完成一项任务。<br><br>进程间通信分类：文件、文件锁、匿名管道(pipe)、有名管道(FIFO)、信号、消息队列、共享内存、信号量、互斥量、条件变量、读写锁、套接字。<br>system V系列：消息队列、共享内存、信号量。<br>POSIX系列：消息队列、共享内存、信号量、条件变量、读写锁、套接字。</font></p>
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="500" height="100" src="//music.163.com/outchain/player?type=2&id=409654891&auto=0&height=66"></iframe>
 <font face="幼圆" size="2" color="blac"><span id="busuanzi_container_page_pv"> 本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span></font>
 
@@ -418,15 +456,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安逸</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hash</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安逸</a>
               </li>
              
               <li class="article-tag-list-item">
