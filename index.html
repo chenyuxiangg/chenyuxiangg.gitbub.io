@@ -1,13 +1,39 @@
-+
-+
-+  
-+
-
-
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="dns-prefetch" href="http://chenyuxiangg.github.io">
+  <title>紫翼之狮的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="紫翼之狮的博客">
+<meta property="og:url" content="http://chenyuxiangg.github.io/index.html">
+<meta property="og:site_name" content="紫翼之狮的博客">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="紫翼之狮的博客">
+  
+    <link rel="alternative" href="/atom.xml" title="紫翼之狮的博客" type="application/atom+xml">
   
   
-  <link href="/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="/assets/ico/webico.ico">
+  
+  <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
+  <style type="text/css">
+  
+    #container.show {
+      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
+    }
+  </style>
+  
 
+  
+
+</head>
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -203,10 +229,20 @@
     <div class="article-entry" itemprop="articleBody">
       
         <hr>
-<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p><font face="楷体" size="5">怎么说呢，这次的笔试题考察的是编码能力，相比于2018年字节跳动第三批的笔试题，是比较简单的了（前三题是这样的），但是由于自己综合素质不行，导致都没有全A。简单说一下每个题的解法吧，纪念昨天的我。
-        
-          <a class="article-more-a" href="/2019/08/12/字节跳动2019秋招笔试/#more">more >></a>
-        
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p><font face="楷体" size="5">怎么说呢，这次的笔试题考察的是编码能力，相比于2018年字节跳动第三批的笔试题，是比较简单的了（前三题是这样的），但是由于自己综合素质不行，导致都没有全A。简单说一下每个题的解法吧，纪念昨天的我。<br></font></p>
+<h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><p><font face="楷体" size="5"><em>牛牛起床。牛牛设置了n个闹铃，每个闹铃有小时A（0 &lt;= A &lt; 24),分钟B（0 &lt;= B &lt; 60），牛牛从宿舍走到教室需要K（0 &lt;= K &lt;= 100）分钟，学校上课是在C（0 &lt;= C &lt; 24）时，D（0 &lt;= D &lt; 60）分。测试用例保证测试输入至少拥有一个解，请给出牛牛最晚可以什么时候起床。</em></font></p>
+<hr>
+<p><font face="宋体" size="5" color="blac"><br>我的解法：</font></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> namespae <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CLOC</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> hi;</span><br><span class="line">	<span class="keyword">int</span> mi;</span><br><span class="line">&#125;cloc;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	<span class="built_in">vector</span>&lt;cloc&gt; arr(n);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n;++i) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; arr[i].hi &gt;&gt; arr[i].mi;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> k;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; k;</span><br><span class="line">	cloc k_c;</span><br><span class="line">	k_c.hi = k / <span class="number">60</span>;</span><br><span class="line">	k_c.mi = k % <span class="number">60</span>;</span><br><span class="line">	cloc start;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; start.hi &gt;&gt; start.mi;</span><br><span class="line">	</span><br><span class="line">	cloc res;</span><br><span class="line">	res.hi = INT_MIN;</span><br><span class="line">	res.mi = INT_MIN;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n;++i) &#123;</span><br><span class="line">		cloc real_time;</span><br><span class="line">		real_time.mi = arr[i].mi + k_c.mi;</span><br><span class="line">		real_time.hi = arr[i].hi + k_c.hi + real_time.mi / <span class="number">60</span>;</span><br><span class="line">		real_time.mi = real_time.mi % <span class="number">60</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (real_time.hi &lt;= start.hi) &#123;</span><br><span class="line">			<span class="keyword">if</span> (real_time.mi &lt;= start.mi) &#123;</span><br><span class="line">				<span class="keyword">if</span> (res.hi &gt;= arr[i].hi &amp;&amp; res.mi &gt;= arr[i].mi) &#123;</span><br><span class="line">					res.hi = arr[i].hi;</span><br><span class="line">					res.mi = arr[i].mi</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; res.hi &lt;&lt; <span class="string">" "</span> &lt;&lt; res.mi &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><font face="楷体" size="5">上述代码只通过了40%，原因在于：<br></font></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (res.hi &gt;= arr[i].hi &amp;&amp; res.mi &gt;= arr[i].mi)</span><br></pre></td></tr></table></figure>
+
+<p><font face="楷体" size="5">如果遇到8：10和7：50，那么最晚时间会返回7：50，而正确答案应该返回8：10。<br></font></p>
+<p><font face="楷体" size="5">于是，100%的代码如下：</font></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> namespae <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CLOC</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> hi;</span><br><span class="line">	<span class="keyword">int</span> mi;</span><br><span class="line">&#125;cloc;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	<span class="built_in">vector</span>&lt;cloc&gt; arr(n);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n;++i) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; arr[i].hi &gt;&gt; arr[i].mi;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> k;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; k;</span><br><span class="line">	cloc k_c;</span><br><span class="line">	k_c.hi = k / <span class="number">60</span>;</span><br><span class="line">	k_c.mi = k % <span class="number">60</span>;</span><br><span class="line">	cloc start;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; start.hi &gt;&gt; start.mi;</span><br><span class="line">	</span><br><span class="line">	cloc res;</span><br><span class="line">	res.hi = INT_MIN;</span><br><span class="line">	res.mi = INT_MIN;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n;++i) &#123;</span><br><span class="line">		cloc real_time;</span><br><span class="line">		real_time.mi = arr[i].mi + k_c.mi;</span><br><span class="line">		real_time.hi = arr[i].hi + k_c.hi + real_time.mi / <span class="number">60</span>;</span><br><span class="line">		real_time.mi = real_time.mi % <span class="number">60</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (real_time.hi &lt;= start.hi) &#123;</span><br><span class="line">			<span class="keyword">if</span> (real_time.mi &lt;= start.mi) &#123;</span><br><span class="line">				<span class="keyword">if</span> (res.hi &gt;= arr[i].hi) &#123;</span><br><span class="line">					res.hi = arr[i].hi;</span><br><span class="line">					res.mi = arr[i].mi</span><br><span class="line">				&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="keyword">if</span> (res.mi &gt;= arr[i].mi) &#123;</span><br><span class="line">						res.hi = arr[i].hi;</span><br><span class="line">						res.hi = arr[i].mi;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; res.hi &lt;&lt; <span class="string">" "</span> &lt;&lt; res.mi &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h2>
       
 
       
@@ -984,10 +1020,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">其他</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">c++</a>
               </li>
              
@@ -996,11 +1028,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安逸</a>
+                <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">回溯</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安逸</a>
               </li>
              
               <li class="article-tag-list-item">
