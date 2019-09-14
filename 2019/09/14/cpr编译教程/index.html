@@ -6,15 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://chenyuxiangg.github.io">
-  <title>Tag: hash | 紫翼之狮的博客</title>
+  <title>cpr编译教程 | 紫翼之狮的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="紫翼之狮的博客">
-<meta property="og:url" content="http://chenyuxiangg.github.io/tags/hash/index.html">
+  <meta name="description" content="编译前准备 vs2015； cmake(如果有条件请翻墙下载，否则我这里提供目前（2019.9.14）最新版)，下载后直接安装，并记得勾选配置到环境变量； openssl源码(下载)； cpr源码(下载)； 编译openssl所需的工具ActivePerl(下载)，下载后安装">
+<meta name="keywords" content="编译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cpr编译教程">
+<meta property="og:url" content="http://chenyuxiangg.github.io/2019/09/14/cpr编译教程/index.html">
 <meta property="og:site_name" content="紫翼之狮的博客">
+<meta property="og:description" content="编译前准备 vs2015； cmake(如果有条件请翻墙下载，否则我这里提供目前（2019.9.14）最新版)，下载后直接安装，并记得勾选配置到环境变量； openssl源码(下载)； cpr源码(下载)； 编译openssl所需的工具ActivePerl(下载)，下载后安装">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://github.com/chenyuxiangg/cyxblog_relate/blob/master/cpr/photo/cpr_directry.png">
+<meta property="og:image" content="https://github.com/chenyuxiangg/cyxblog_relate/blob/master/cpr/photo/cpr_project.png">
+<meta property="og:image" content="https://github.com/chenyuxiangg/cyxblog_relate/blob/master/cpr/photo/predeal.png">
+<meta property="og:updated_time" content="2019-09-14T10:07:40.967Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="紫翼之狮的博客">
+<meta name="twitter:title" content="cpr编译教程">
+<meta name="twitter:description" content="编译前准备 vs2015； cmake(如果有条件请翻墙下载，否则我这里提供目前（2019.9.14）最新版)，下载后直接安装，并记得勾选配置到环境变量； openssl源码(下载)； cpr源码(下载)； 编译openssl所需的工具ActivePerl(下载)，下载后安装">
+<meta name="twitter:image" content="https://github.com/chenyuxiangg/cyxblog_relate/blob/master/cpr/photo/cpr_directry.png">
   
     <link rel="alternative" href="/atom.xml" title="紫翼之狮的博客" type="application/atom+xml">
   
@@ -144,64 +153,239 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-cpr编译教程" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/21/算法-缺失的第一个正数/" class="archive-article-date">
-  	<time datetime="2019-07-21T02:34:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-21</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/21/算法-缺失的第一个正数/">算法-缺失的第一个正数</a>
+    <h1 class="article-title" itemprop="name">
+      cpr编译教程
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/09/14/cpr编译教程/" class="archive-article-date">
+  	<time datetime="2019-09-14T07:36:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h1 id="编译前准备"><a href="#编译前准备" class="headerlink" title="编译前准备"></a>编译前准备</h1><ol>
+<li>vs2015；</li>
+<li>cmake(如果有条件请翻墙<a href="https://cmake.org/download/" target="_blank" rel="noopener">下载</a>，否则我这里提供目前（2019.9.14）<a href="https://cmake.org/download/" target="_blank" rel="noopener">最新版</a>)，下载后直接安装，并记得勾选配置到环境变量；</li>
+<li>openssl源码(<a href="https://www.openssl.org/source/" target="_blank" rel="noopener">下载</a>)；</li>
+<li>cpr源码(<a href="https://github.com/chenyuxiangg/cpr" target="_blank" rel="noopener">下载</a>)；</li>
+<li>编译openssl所需的工具ActivePerl(<a href="http://www.activestate.com/activeperl/downloads" target="_blank" rel="noopener">下载</a>)，下载后安装<br></li>
+</ol>
+<a id="more"></a>
+
+<h1 id="编译openssl"><a href="#编译openssl" class="headerlink" title="编译openssl"></a>编译openssl</h1><h2 id="设置VC编译环境"><a href="#设置VC编译环境" class="headerlink" title="设置VC编译环境"></a>设置VC编译环境</h2><p><font face="楷体" size="5">该标题下所有操作都是在<em>VS2015开发人员命令提示</em>中进行的，具体位置为：开始-&gt;Visual Studio 2015(win7 下应该是：所有程序-&gt;Visual Studio 2015)-&gt;Visual Studio Tools</font></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">**注意：xx为vs2015的安装目录，例如我的是：E:\vs15</span><br><span class="line"></span><br><span class="line">[编译32位openssl]</span><br><span class="line">cd xx\VC\bin</span><br><span class="line">vcvars32.bat</span><br><span class="line"></span><br><span class="line">[编译64位openssl]</span><br><span class="line">cd xx\VC\bin\amd64</span><br><span class="line">vcvars64.bat</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置文件和类型"><a href="#配置文件和类型" class="headerlink" title="配置文件和类型"></a>配置文件和类型</h2><ol>
+<li><p>进入openssl源码目录，如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd E:\新桌面\openssl-1.0.2t</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>配置编译类型和输出目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">perl Configure [编译类型] no-asm --prefix="[输出目录]"</span><br><span class="line"></span><br><span class="line">**注意：no-asm用于关闭汇编模式</span><br></pre></td></tr></table></figure>
+
+<p><em>[编译类型]可以如下：</em></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>debug-VC-WIN32</td>
+<td>编译32位debug版本</td>
+</tr>
+<tr>
+<td>VC-WIN32</td>
+<td>编译32位release版本</td>
+</tr>
+<tr>
+<td>debug-VC-WIN64A</td>
+<td>编译64位debug版本</td>
+</tr>
+<tr>
+<td>VC-WIN64A</td>
+<td>编译64位debug版本</td>
+</tr>
+</tbody></table>
+<p><em>[输出目录]可以自己定义</em></p>
+</li>
+<li><p>配置模式</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[编译32位openssl]</span><br><span class="line">ms\do_nasm</span><br><span class="line"></span><br><span class="line">[编译64位openssl]</span><br><span class="line">ms\do_win64a.bat</span><br></pre></td></tr></table></figure>
+
+<p><strong>执行完这一步之后，在ms目录下生成nt.mak和ntdll.mak两个编译配置文件，nt.mak用于生成静态lib库，ntdll.mak用于生成动态dll库</strong></p>
+</li>
+</ol>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[编译成lib]</span><br><span class="line">nmake -f ms\nt.mak</span><br><span class="line">nmake -f ms\nt.mak test</span><br><span class="line">nmake -f ms\nt.mak install</span><br><span class="line">nmake -f ms\nt.mak clean</span><br><span class="line"></span><br><span class="line">[编译成dll]</span><br><span class="line">nmake -f ms\ntdll.mak</span><br><span class="line">nmake -f ms\ntdll.mak test</span><br><span class="line">nmake -f ms\ntdll.mak install</span><br><span class="line">nmake -f ms\ntdll.mak clean</span><br></pre></td></tr></table></figure>
+
+<p><strong>执行test命令可以测试编译好的库，测试成功了就可以运行Install命令，运行完之后才会在输出目录中找到编译好的库和include文件</strong></p>
+<h1 id="编译cpr"><a href="#编译cpr" class="headerlink" title="编译cpr"></a>编译cpr</h1><p><em>说明：openssl我使用的是静态编译，输出目录是E:\新桌面\openssl-lib</em><br><em>这里也要注意，由于cpr依赖于curl，所以我们必须先编译curl,不过幸运的是，cpr中已经包含了curl的编译过程，我们只需要将源码(<a href="https://github.com/whoshuu/curl" target="_blank" rel="noopener">下载</a>)放到cpr\opt\curl目录下即可，同理，将<a href="https://github.com/whoshuu/googletest" target="_blank" rel="noopener">googletest</a>、<a href="https://github.com/whoshuu/mongoose" target="_blank" rel="noopener">mongoose</a>，也放到cpr\opt\googletest和cpr\opt\mongoose下。至于后两个是干啥的我也不知道。。</em><br></p>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>设置系统环境变量PENSSL_ROOT_DIR值为*[openssl输出目录]*我的是：E:\新桌面\openssl-lib</p>
+<h2 id="编译-1"><a href="#编译-1" class="headerlink" title="编译"></a>编译</h2><p>cpr目录结构：<br><img src="https://github.com/chenyuxiangg/cyxblog_relate/blob/master/cpr/photo/cpr_directry.png" alt="cpr目录结构"><br></p>
+<p><br>在cpr目录下新建build文件夹，命令行进入到build目录，并输入命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake ..</span><br></pre></td></tr></table></figure>
+
+<p>等待编译完成，然后进入build目录即可看到完整的cpr工程使用vs2015打开cpr.sln，便可以看到如下的目录结构：<br><img src="https://github.com/chenyuxiangg/cyxblog_relate/blob/master/cpr/photo/cpr_project.png" alt="project"></p>
+<p><br>libcurl为curl库的项目，cpr为cpr项目，其他的不用管。我们直接在此两个项目上分别右键重新生成便可以得到我们想要的东西(cpr-d.lib,libcurl-d.dll,libcurl-d_imp.lib)，不过要注意先生成libcurl，然后在生成cpr，因为cpr依赖libcurl。由于cpr是默认编译为静态库的，而curl默认是动态库，网上说在libcurl的预处理器中添加CURL_STATICLIB即可让其编译为静态库，不过我试了没成功。。大家可以尝试一下，然后教教我。在如下地方加入：<br><img src="https://github.com/chenyuxiangg/cyxblog_relate/blob/master/cpr/photo/predeal.png" alt="detail"></p>
+<h1 id="测试例子"><a href="#测试例子" class="headerlink" title="测试例子"></a>测试例子</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将cpr-d.lib,libcurl-d.dll,libcurl-d_imp.lib这三个库文件放到源码同级目录下，然后包含cpr中的头文件(具体的方法我就不详细说了，最简单的方法是将所有.h文件复制到demo.cpp同级目录下)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"cpr/cpr.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(lib,<span class="meta-string">"cpr-d.lib"</span>)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(lib,<span class="meta-string">"libcurl-d_imp.lib"</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//测试网站https://github.com/chenyuxiangg</span></span><br><span class="line">	<span class="keyword">auto</span> response = cpr::Get(cpr::Url&#123; <span class="string">"https://github.com/chenyuxiangg"</span> &#125;,</span><br><span class="line">		cpr::Parameters&#123; &#123; <span class="string">"hello"</span>, <span class="string">"world"</span> &#125; &#125;,</span><br><span class="line">		cpr::VerifySsl(<span class="literal">false</span>));</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; response.url &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; response.status_code &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">*输出为：</span></span><br><span class="line"><span class="comment">*https://github.com/chenyuxiangg?hello=world</span></span><br><span class="line"><span class="comment">*200</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="编译成品"><a href="#编译成品" class="headerlink" title="编译成品"></a>编译成品</h1><p>最后献上我编译的32位cpr成品，点击这里<a href="https://github.com/chenyuxiangg/cyxblog_relate/blob/master/cpr/cpr_lib/debug.zip" target="_blank" rel="noopener">下载</a></p>
+<h1 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h1><p><a href="https://blog.csdn.net/anjisi/article/details/81744891" target="_blank" rel="noopener">C++ Http访问Cpr开源库编译</a><br><a href="https://blog.csdn.net/YAOJINGKAO/article/details/53041165?locationNum=10&fps=1" target="_blank" rel="noopener">Win7 下用 VS2015 编译最新 openssl</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hash</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数组</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编译</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://chenyuxiangg.github.io/2019/09/14/cpr编译教程/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/08/12/字节跳动2019秋招笔试/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">字节跳动2019秋招笔试</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -229,9 +413,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
