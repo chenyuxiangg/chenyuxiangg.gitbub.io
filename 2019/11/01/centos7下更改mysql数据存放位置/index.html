@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://chenyuxiangg.github.io">
-  <title>Tag: 安逸 | 紫翼之狮的博客</title>
+  <title>centos7下更改mysql数据存放位置 | 紫翼之狮的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="紫翼之狮的博客">
-<meta property="og:url" content="http://chenyuxiangg.github.io/tags/安逸/index.html">
+  <meta name="description" content="概述今天做项目时使用到了mysql数据库，而mysql默认数据存放位置为/var/lib/mysql，我的该分区较小不足以存放数据库的大量数据，于是想到更改数据存放位置。">
+<meta name="keywords" content="linux,mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos7下更改mysql数据存放位置">
+<meta property="og:url" content="http://chenyuxiangg.github.io/2019/11/01/centos7下更改mysql数据存放位置/index.html">
 <meta property="og:site_name" content="紫翼之狮的博客">
+<meta property="og:description" content="概述今天做项目时使用到了mysql数据库，而mysql默认数据存放位置为/var/lib/mysql，我的该分区较小不足以存放数据库的大量数据，于是想到更改数据存放位置。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-01T06:18:42.307Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="紫翼之狮的博客">
+<meta name="twitter:title" content="centos7下更改mysql数据存放位置">
+<meta name="twitter:description" content="概述今天做项目时使用到了mysql数据库，而mysql默认数据存放位置为/var/lib/mysql，我的该分区较小不足以存放数据库的大量数据，于是想到更改数据存放位置。">
   
     <link rel="alternative" href="/atom.xml" title="紫翼之狮的博客" type="application/atom+xml">
   
@@ -144,60 +149,195 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-centos7下更改mysql数据存放位置" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/09/牵与牵寻/" class="archive-article-date">
-  	<time datetime="2019-07-09T13:27:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/09/牵与牵寻/">牵与牵寻</a>
+    <h1 class="article-title" itemprop="name">
+      centos7下更改mysql数据存放位置
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/11/01/centos7下更改mysql数据存放位置/" class="archive-article-date">
+  	<time datetime="2019-11-01T04:55:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>今天做项目时使用到了mysql数据库，而mysql默认数据存放位置为<font color="red">/var/lib/mysql</font>，我的该分区较小不足以存放数据库的大量数据，于是想到更改数据存放位置。</p>
+<a id="more"></a>
+
+<h3 id="First-Step"><a href="#First-Step" class="headerlink" title="First Step"></a>First Step</h3><p>在<font color="red">任何</font>你想放置数据库数据的地方新建<font color="red">任意名字</font>的目录（当然为了便于记忆推荐你新建mysql_data）。例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /mnt/database</span><br><span class="line">mkdir mysql_data</span><br></pre></td></tr></table></figure>
+
+<h3 id="Second-Step"><a href="#Second-Step" class="headerlink" title="Second Step"></a>Second Step</h3><p>停止mysql进程（如果它active的话），<font color="red">查询</font>方法为</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status mysqld.service</span><br></pre></td></tr></table></figure>
+
+<p>如果查询看到<font color="green">active</font>，那么执行如下语句<font color="red">停止</font>它：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop mysqld.service</span><br><span class="line"><span class="meta">#</span>or service mysqld stop</span><br></pre></td></tr></table></figure>
+
+<p>这里也贴出<font color="red">启动</font>方法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld.service</span><br><span class="line"><span class="meta">#</span>or service mysqld start</span><br></pre></td></tr></table></figure>
+
+<h3 id="Third-Step"><a href="#Third-Step" class="headerlink" title="Third Step"></a>Third Step</h3><p>将<font color="red">/var/lib/mysql</font>目录下的<font color="red">所有文件</font>复制到刚刚你新建的目录下，即<font color="red">/mnt/mysql_data</font>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp -arp /var/lib/mysql /mnt/mysql_data</span><br><span class="line"><span class="meta">#</span>-a 拷贝所有文件</span><br><span class="line"><span class="meta">#</span>-r 递归拷贝</span><br><span class="line"><span class="meta">#</span>-p 保留原有权限拷贝</span><br></pre></td></tr></table></figure>
+
+<h3 id="Forth-Step"><a href="#Forth-Step" class="headerlink" title="Forth Step"></a>Forth Step</h3><p>编辑<font color="red">/etc/my.cnf</font>，如果<font color="red">/etc</font>目录下没有，那么就将<font color="red">/usr/share/mysql/my-medium.cnf</font>拷贝到<font color="red">/etc</font>目录下，并改名为<font color="red">my.cnf</font>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>cp /usr/share/my-medium.cnf /etc/my.cnf</span><br><span class="line">vim /etc/my.cnf</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>找到datadir与socket变量，把原来的注释了，修改为：</span><br><span class="line"><span class="meta">#</span>datadir=/mnt/mysql_data</span><br><span class="line"><span class="meta">#</span>socket=/mnt/mysql_data/mysql.sock</span><br><span class="line"><span class="meta">#</span>并在文件末尾新增</span><br><span class="line"><span class="meta">#</span>[mysql]</span><br><span class="line"><span class="meta">#</span>socket=/mnt/mysql_data/mysql.sock</span><br></pre></td></tr></table></figure>
+
+<h3 id="Finally"><a href="#Finally" class="headerlink" title="Finally"></a>Finally</h3><p>修改数据顶层目录（mysql_data）的对象（object_r):</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">semanage fcontext -a -t mysqld_db_t "/mnt/mysql_data(/.*)?"</span><br></pre></td></tr></table></figure>
+
+<p>然后重启系统，It`s all right.</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安逸</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://chenyuxiangg.github.io/2019/11/01/centos7下更改mysql数据存放位置/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/09/14/cpr编译教程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">cpr编译教程</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -225,9 +365,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
