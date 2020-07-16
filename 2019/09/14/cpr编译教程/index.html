@@ -1,13 +1,48 @@
-+
-+
-+  
-+
-
-
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="dns-prefetch" href="http://chenyuxiangg.github.io">
+  <title>cpr编译教程 | 紫翼之狮的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="编译前准备 vs2015； cmake(如果有条件请翻墙下载，否则我这里提供目前（2019.9.14）最新版)，下载后直接安装，并记得勾选配置到环境变量； openssl源码(下载)； cpr源码(下载)； 编译openssl所需的工具ActivePerl(下载)，下载后安装">
+<meta name="keywords" content="编译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cpr编译教程">
+<meta property="og:url" content="http://chenyuxiangg.github.io/2019/09/14/cpr编译教程/index.html">
+<meta property="og:site_name" content="紫翼之狮的博客">
+<meta property="og:description" content="编译前准备 vs2015； cmake(如果有条件请翻墙下载，否则我这里提供目前（2019.9.14）最新版)，下载后直接安装，并记得勾选配置到环境变量； openssl源码(下载)； cpr源码(下载)； 编译openssl所需的工具ActivePerl(下载)，下载后安装">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://github.com/chenyuxiangg/cyxblog_relate/blob/master/cpr/photo/cpr_directry.png">
+<meta property="og:image" content="https://github.com/chenyuxiangg/cyxblog_relate/blob/master/cpr/photo/cpr_project.png">
+<meta property="og:image" content="https://github.com/chenyuxiangg/cyxblog_relate/blob/master/cpr/photo/predeal.png">
+<meta property="og:updated_time" content="2019-09-14T10:18:17.416Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cpr编译教程">
+<meta name="twitter:description" content="编译前准备 vs2015； cmake(如果有条件请翻墙下载，否则我这里提供目前（2019.9.14）最新版)，下载后直接安装，并记得勾选配置到环境变量； openssl源码(下载)； cpr源码(下载)； 编译openssl所需的工具ActivePerl(下载)，下载后安装">
+<meta name="twitter:image" content="https://github.com/chenyuxiangg/cyxblog_relate/blob/master/cpr/photo/cpr_directry.png">
+  
+    <link rel="alternative" href="/atom.xml" title="紫翼之狮的博客" type="application/atom+xml">
   
   
-  <link href="/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="/assets/ico/webico.ico">
+  
+  <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
+  <style type="text/css">
+  
+    #container.show {
+      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
+    }
+  </style>
+  
 
+  
+
+</head>
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -455,19 +490,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编译</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安逸</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">其他</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">回溯</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -479,11 +502,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hash</a>
+                <a href="javascript:void(0)" class="js-tag color3">编译</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+                <a href="javascript:void(0)" class="js-tag color3">安逸</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,11 +518,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-visual stutio -c++ -环境搭建</a>
+                <a href="javascript:void(0)" class="js-tag color3">回溯</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">unix</a>
+                <a href="javascript:void(0)" class="js-tag color5">hash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -508,6 +535,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">环境搭建</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">unix</a>
               </li>
             
             <div class="clearfix"></div>
